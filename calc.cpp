@@ -11,7 +11,8 @@ This program reads a .txt file and reads plusses and minuses as well as numbers 
 	char n;
 	int tot, temp;
 	int minus = 1;
-	while (cin >> temp){
+	int c = 0;
+	while (cin >> temp && c < 10){
 		if (cin.fail() ){
 			cin >> n;
 			if (n == '-')
@@ -20,6 +21,7 @@ This program reads a .txt file and reads plusses and minuses as well as numbers 
 				minus = 1;
 		}
 		tot += temp * minus;
+		c++;
 	}
 	cout << tot << endl;
 	return 0;
