@@ -10,19 +10,28 @@ This program reads a .txt file and reads plusses and minuses as well as numbers 
 using namespace std;
 
 int main () {
-	char n; //need a char for '-' and '+'
-	int tot, temp;
-	int minus = 1; //keeps track of minus or plus
-	while (cin >> temp){
-		if (cin.fail() ){
-			cin >> n;
-			if (n == '-')
-				minus = -1;
-			else
-				minus = 1; 
+	char place;
+	int tot = 0;
+	int temp = 0; 
+	int sign = 1;
+	while (cin >> place){
+		if (place == '-'){
+			tot += temp * sign;
+			sign = -1;
+			temp=0;
 		}
-		tot += temp * minus;
+		else if (place == '+'){
+			tot += temp * sign;
+			sign = 1;
+			temp=0;
+		}
+		else {
+			temp *= 10;
+			temp += (int)place-48;
+		}
+		
 	}
+	tot += temp * sign;
 	cout << tot << endl;
 	return 0;
 }
