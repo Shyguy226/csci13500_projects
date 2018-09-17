@@ -10,10 +10,10 @@ This program reads a .txt file and reads plusses and minuses as well as numbers 
 using namespace std;
 
 int main () {
-	char place;
+	char place; //char so that the '-' and the '+' can be read
 	int tot = 0;
 	int temp = 0; 
-	int sign = 1;
+	int sign = 1;//-1 or 1 to be multiplied by for subtraction and addition
 	while (cin >> place){
 		if (place == '-'){
 			tot += temp * sign;
