@@ -28,7 +28,7 @@ void splitOnSpace(string s, string & before, string & after) {
   while (i < s.size()) { after += s[i]; i++; }
 }
 
-string Convert(string& str)
+string Convert(string& str) //this will convert to capital letters
 {
 	locale settings;
 	string converted;
