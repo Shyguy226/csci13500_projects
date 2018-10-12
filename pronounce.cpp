@@ -27,7 +27,7 @@ void splitOnSpace(string s, string & before, string & after) {
   while (i < s.size()) { after += s[i]; i++; }
 }
 
-int countSpaces (string input){
+int countSpaces (string input){ //counts the spaces in a string
   int num = 0;
   string space = " ";
   for ( int i = 0; i < input.length(); i++){
@@ -50,7 +50,7 @@ string Convert(string& str) //this will convert to capital letters
 
 int main(){
 	string word = "";
-	string names [100];
+	string names [100]; //this holds the names of the homonyms
 	int counter = 0;
 	int spaceCount = 0;
 	int cooc = 0;
@@ -62,12 +62,12 @@ int main(){
 	string insert = "";
 	string insert2 = "";
 	string insert3 = "";
-	string pro="";
-	string past="";
+	string pro=""; //this holds the first pronunciation
+	string past=""; //this holds the first word
 	string r1 = "";
 	string r2 = "";
 	string r3 = "";
-	string r4 = "";
+	string r4 = ""; //the r strings are useful when replacing phenomes
 	string r5 = "";
 	string r6 = "";
 	string a="";
