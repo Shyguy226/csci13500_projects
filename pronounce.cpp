@@ -27,7 +27,7 @@ void splitOnSpace(string s, string & before, string & after) {
   while (i < s.size()) { after += s[i]; i++; }
 }
 
-int countSpaces (string input){
+int countSpaces (string input){ //this counts spaces in a string
   int num = 0;
   string space = " ";
   for ( int i = 0; i < input.length(); i++){
@@ -59,12 +59,12 @@ int main(){
 	string insert = "";
 	string insert2 = "";
 	string insert3 = "";
-	string pro="";
-	string past="";
+	string pro=""; //this holds the original pronunciation from the first part
+	string past=""; //this holds the original word from the first part
 	string r1 = "";
 	string r2 = "";
 	string r3 = "";
-	string r4 = "";
+	string r4 = ""; //these r strings are used in the replacement section
 	string r5 = "";
 	string r6 = "";
 	string a="";
@@ -115,7 +115,7 @@ int main(){
 	  }
 	}
 	    
-	if (!found){
+	if (!found){ //this is the error message if the word is not in the dictionary
 	ans = "Not found";
 	}
 	
