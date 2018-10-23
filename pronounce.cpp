@@ -105,12 +105,12 @@ int main(){
 	ans += "\nReplace phoneme\t: ";
 	fin.open ("Pro_Dictionary");
 	while (getline(fin, insert3)){
-	  splitOnSpace(insert3, a, b);
+	  splitOnSpace(insert3, a, b); //a
 	  r2 = pro;
-	  r4 = b;
+	  r4 = b; //a
 	  if (spaceCount == countSpaces(r4)){
 	  for (int i = 0; i < spaceCount+1; i++){
-	    splitOnSpace(r2, r1, r2);
+	    splitOnSpace(r2, r1, r2); //a
 	    splitOnSpace(r4, r3, r4);
 	    if (r1 != r3){
 	      counter++;
@@ -121,17 +121,17 @@ int main(){
 	    if (a == names[i])
 	      flag1=true;
 	  }
-	  if (counter < 2 && a != past && flag1==false){
+	  if (counter < 2 && a != past && flag1==false){ //a
 	    ans += a + " ";
 	  }
-	  counter = 0;
+	  counter = 0; //a
 	  }
 	}
 
-	ans += "\nAdd phoneme\t: ";
+	ans += "\nAdd phoneme\t: "; //a
 	
 	    
-	if (!found){
+	if (!found){ //a
 	ans = "Not found";
 	}
 	
