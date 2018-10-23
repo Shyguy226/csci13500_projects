@@ -2,7 +2,7 @@
 Author: Andrew Giannico
 Course: CSCI-135
 Instructor: Genady Maryash
-Assignment: Project 2 Phase III
+Assignment: Project 2 Phase IV
 This program will take in a word and print out the pronunciation and words in the dictionary that have the exact same pronunciation.
 */
 #include <iostream>
@@ -27,7 +27,7 @@ void splitOnSpace(string s, string & before, string & after) {
   while (i < s.size()) { after += s[i]; i++; }
 }
 
-int countSpaces (string input){ //counts the spaces in a string
+int countSpaces (string input){
   int num = 0;
   string space = " ";
   for ( int i = 0; i < input.length(); i++){
@@ -50,10 +50,11 @@ string Convert(string& str) //this will convert to capital letters
 
 int main(){
 	string word = "";
-	string names [100]; //this holds the names of the homonyms
+	string names [100];
 	int counter = 0;
 	int spaceCount = 0;
 	int cooc = 0;
+	int name;
 	string spaces = "";
 	bool found = false;
 	bool firsti = true;
@@ -62,12 +63,12 @@ int main(){
 	string insert = "";
 	string insert2 = "";
 	string insert3 = "";
-	string pro=""; //this holds the first pronunciation
-	string past=""; //this holds the first word
+	string pro="";
+	string past="";
 	string r1 = "";
 	string r2 = "";
 	string r3 = "";
-	string r4 = ""; //the r strings are useful when replacing phenomes
+	string r4 = "";
 	string r5 = "";
 	string r6 = "";
 	string a="";
@@ -98,6 +99,7 @@ int main(){
 		  
 		}
 	}
+	cooc=0;
 	fin.close();
 	spaceCount = countSpaces(pro);
 	ans += "\nReplace phoneme\t: ";
@@ -125,6 +127,9 @@ int main(){
 	  counter = 0;
 	  }
 	}
+
+	ans += "\nAdd phoneme\t: ";
+	
 	    
 	if (!found){
 	ans = "Not found";
