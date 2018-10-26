@@ -1,3 +1,8 @@
+/*
+Author: Andrew Giannico
+Course: CSCI-135
+Instructor: Genady Maryash
+Assignment: Project 2 Phase V
 This program will take in a word and print out the pronunciation and words in the dictionary that have the exact same pronunciation. Then it will give all words than can be obtained by replacing one phoneme. Then, it will have the same list for adding one phoneme. Finally, it will have a list for removing one phoneme.
 */
 #include <iostream>
@@ -60,14 +65,14 @@ int main(){
 	string insert3 = "";
 	string pro="";
 	string past="";
-	string r1 = "";
+	string r1 = ""; //the r strings are holding tools during comparisons
 	string r2 = "";
 	string r3 = "";
 	string r4 = "";
 	string r5 = "";
 	string r6 = "";
-	string a="";
-	string b="";
+	string a=""; //a will always hold the word to potentially be added
+	string b=""; //b will always hold the pronunciation to the new word
 	cin >> word;
 	string ans="Pronunciation	:";
 	ifstream fin("Pro_Dictionary");
@@ -88,7 +93,7 @@ int main(){
 		if (b == pro){
 		  if(Convert(past) != a){
 			ans += a + " ";
-			names[cooc]=a;
+			names[cooc]=a; //this is for Replace to not get mimics
 			cooc++;
 		  }
 		  
@@ -96,7 +101,7 @@ int main(){
 	}
         
 	fin.close();
-	spaceCount = countSpaces(pro);
+	spaceCount = countSpaces(pro); //counts spaces in main pronunciation
 	ans += "\nReplace phoneme\t: ";
 	fin.open ("Pro_Dictionary");
 	while (getline(fin, insert3)){ //this section is parsing the phonemes
@@ -123,7 +128,7 @@ int main(){
 	  flag1 = false;
 	  }
 	}
-	fin.close();
+	fin.close(); //must close document to reopen every time
 	counter = 0;
 	ans += "\nAdd phoneme\t: ";
 	fin.open("Pro_Dictionary");
@@ -131,8 +136,6 @@ int main(){
 	  splitOnSpace(insert3, a, b);
 	  r2 = pro;
 	  r4 = b;
-	  if(a == "MALIGNED")
-	    cout << countSpaces(r4) << spaceCount << endl;
 	  if ((spaceCount + 1) == countSpaces(r4)){
 	    for (int i = 0; i <= spaceCount+1; i++){
 	      r5 = r2;
@@ -151,6 +154,7 @@ int main(){
 	}
 	fin.close();
 	counter = 0;
+	      
 	ans +="\nRemove phoneme\t: ";
 	fin.open("Pro_Dictionary");
 	while (getline(fin, insert3)){
@@ -168,13 +172,13 @@ int main(){
 		r4 = r5;
 	      }
 	    }
-	    if (counter < 2)
+	    if (counter < 2) //less than 2 beacause only 1 difference is allowed
 	      ans += a + " ";
 	    counter = 0;
 	  }
 	}
 	  
-	if (!found){
+	if (!found){ //if the word does not exist in the dictionary
 	ans = "Not found";
 	}
 	
