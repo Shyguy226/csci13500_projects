@@ -127,7 +127,7 @@ int main(){
 	}
 	fin.close();
 	counter = 0;
-	      //fuck yes, I'm a legend and I'm awesome. No one is better than me
+	      
 	ans +="\nRemove phoneme\t: ";
 	fin.open("Pro_Dictionary");
 	while (getline(fin, insert3)){
