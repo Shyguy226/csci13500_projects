@@ -75,7 +75,7 @@ int main(){
 	string b=""; //b will always hold the pronunciation to the new word
 	cin >> word;
 	string ans="Pronunciation	:";
-	ifstream fin("Pro_Dictionary");
+	ifstream fin("cmudict.0.7a");
 	while (getline(fin,insert)){
 	  splitOnSpace(insert, a, b);
 	  if (a == Convert(word)){
@@ -87,7 +87,7 @@ int main(){
 	  }
 	}
 	ans += "\n\nIdentical	: ";
-	fin.open ("Pro_Dictionary");
+	fin.open ("cmudict.0.7a");
 	while (getline(fin, insert2)){
 	  splitOnSpace(insert2, a, b);
 		if (b == pro){
@@ -104,7 +104,7 @@ int main(){
 	spaceCount = countSpaces(pro); //counts spaces in main pronunciation
 	counter = 0;
 	ans += "\nAdd phoneme\t: ";
-	fin.open("Pro_Dictionary");
+	fin.open("cmudict.0.7a");
 	while (getline(fin, insert3)){
 	  splitOnSpace(insert3, a, b);
 	  r2 = pro;
@@ -117,7 +117,8 @@ int main(){
 	      if (r1 != r3){
 		counter++;
 		splitOnSpace(r4, r3, r4);
-	        r2 = r5;
+	        if(r1 != r3)
+		  counter++;
 	      }
 	    }
 	    if (counter < 2)
@@ -127,9 +128,9 @@ int main(){
 	}
 	fin.close();
 	counter = 0;
-	      
+	     
 	ans +="\nRemove phoneme\t: ";
-	fin.open("Pro_Dictionary");
+	fin.open("cmudict.0.7a");
 	while (getline(fin, insert3)){
 	  splitOnSpace(insert3, a, b);
 	  r2 = pro;
@@ -142,7 +143,8 @@ int main(){
 	      if(r1 != r3){
 		counter++;
 		splitOnSpace(r2, r1, r2);
-		r4 = r5;
+	        if(r1 != r3)
+		  counter++;
 	      }
 	    }
 	    if (counter < 2) //less than 2 beacause only 1 difference is allowed
@@ -153,7 +155,7 @@ int main(){
 	fin.close();
 	ans += "\nReplace phoneme\t: ";
 	counter = 0;
-	fin.open ("Pro_Dictionary");
+	fin.open ("cmudict.0.7a");
 	while (getline(fin, insert3)){ //this section is parsing the phonemes
 	  splitOnSpace(insert3, a, b);
 	  r2 = pro;
