@@ -59,6 +59,7 @@ int main(){
 	bool found = false;
 	bool firsti = true;
 	bool flag1 = false;
+	bool done = true;
 	string compare= "";
 	string insert = "";
 	string insert2 = "";
@@ -121,8 +122,14 @@ int main(){
 		  counter++;
 	      }
 	    }
-	    if (counter < 2)
+	    if (counter < 2){
+	      for (int i = 0; i < a.length(); i++){
+		if (a[i] == '(')
+		  done = false;
+	    }
+	    if (done) 
 	      ans += a + " ";
+	    }
 	    counter = 0;
 	  }
 	}
@@ -175,10 +182,12 @@ int main(){
 	  }
 	  if (counter < 2 && a != past && flag1==false){ //filters out
 	    for (int i = 0; i < a.length(); i++){
-	      if (a[i] == '(');
-	      else
-	         ans += a + " ";
+	      if (a[i] == '(')
+		done = false;
 	    }
+	    if (done)
+	      ans += a + " ";
+	    done = true;
 	  }
 	  counter = 0;
 	  flag1 = false;
