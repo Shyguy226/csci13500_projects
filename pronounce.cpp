@@ -160,6 +160,7 @@ int main(){
 	  }
 	}
 	fin.close();
+	done = true;
 	ans += "\nReplace phoneme\t: ";
 	counter = 0;
 	fin.open ("cmudict.0.7a");
