@@ -1,9 +1,4 @@
-/*
-Author: Andrew Giannico
-Course: CSCI-135
-Instructor: Genady Maryash
-Assignment: Project 2 Phase IV
-This program will take in a word and print out the pronunciation and words in the dictionary that have the exact same pronunciation.
+This program will take in a word and print out the pronunciation and words in the dictionary that have the exact same pronunciation. Then it will give all words than can be obtained by replacing one phoneme. Then, it will have the same list for adding one phoneme. Finally, it will have a list for removing one phoneme.
 */
 #include <iostream>
 #include <fstream>
@@ -99,38 +94,86 @@ int main(){
 		  
 		}
 	}
-	cooc=0;
+        
 	fin.close();
 	spaceCount = countSpaces(pro);
 	ans += "\nReplace phoneme\t: ";
 	fin.open ("Pro_Dictionary");
-	while (getline(fin, insert3)){
+	while (getline(fin, insert3)){ //this section is parsing the phonemes
 	  splitOnSpace(insert3, a, b);
 	  r2 = pro;
 	  r4 = b;
-	  if (spaceCount == countSpaces(r4)){
-	  for (int i = 0; i < spaceCount+1; i++){
+	  if (spaceCount == countSpaces(r4)){ //this compares length
+	  for (int i = 0; i <= spaceCount; i++){
 	    splitOnSpace(r2, r1, r2);
 	    splitOnSpace(r4, r3, r4);
-	    if (r1 != r3){
+	    if (r1 != r3){ //counts how many phonemes are different
 	      counter++;
 	    }
 	    
 	  }
-	  for (int i = 0; i < cooc; i++){
+	  for (int i = 0; i < cooc; i++){ //for each identical, take em out
 	    if (a == names[i])
 	      flag1=true;
 	  }
-	  if (counter < 2 && a != past && flag1==false){
+	  if (counter < 2 && a != past && flag1==false){ //filters out 
 	    ans += a + " ";
 	  }
 	  counter = 0;
+	  flag1 = false;
 	  }
 	}
-
+	fin.close();
+	counter = 0;
 	ans += "\nAdd phoneme\t: ";
-	
-	    
+	fin.open("Pro_Dictionary");
+	while (getline(fin, insert3)){
+	  splitOnSpace(insert3, a, b);
+	  r2 = pro;
+	  r4 = b;
+	  if(a == "MALIGNED")
+	    cout << countSpaces(r4) << spaceCount << endl;
+	  if ((spaceCount + 1) == countSpaces(r4)){
+	    for (int i = 0; i <= spaceCount+1; i++){
+	      r5 = r2;
+	      splitOnSpace(r2, r1, r2);
+	      splitOnSpace(r4, r3, r4);
+	      if (r1 != r3){
+		counter++;
+		splitOnSpace(r4, r3, r4);
+	        r2 = r5;
+	      }
+	    }
+	    if (counter < 2)
+	      ans += a + " ";
+	    counter = 0;
+	  }
+	}
+	fin.close();
+	counter = 0;
+	ans +="\nRemove phoneme\t: ";
+	fin.open("Pro_Dictionary");
+	while (getline(fin, insert3)){
+	  splitOnSpace(insert3, a, b);
+	  r2 = pro;
+	  r4 = b;
+	  if (spaceCount == (countSpaces(r4)+1)){
+	    for (int i = 0; i <= spaceCount; i++){
+	      r5 = r4;
+	      splitOnSpace(r2, r1, r2);
+	      splitOnSpace(r4, r3, r4);
+	      if(r1 != r3){
+		counter++;
+		splitOnSpace(r2, r1, r2);
+		r4 = r5;
+	      }
+	    }
+	    if (counter < 2)
+	      ans += a + " ";
+	    counter = 0;
+	  }
+	}
+	  
 	if (!found){
 	ans = "Not found";
 	}
