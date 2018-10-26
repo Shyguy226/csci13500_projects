@@ -173,8 +173,12 @@ int main(){
 	    if (a == names[i])
 	      flag1=true;
 	  }
-	  if (counter < 2 && a != past && flag1==false){ //filters out 
-	    ans += a + " ";
+	  if (counter < 2 && a != past && flag1==false){ //filters out
+	    for (int i = 0; i < a.length(); i++){
+	      if (a[i] == '(');
+	      else
+	         ans += a + " ";
+	    }
 	  }
 	  counter = 0;
 	  flag1 = false;
