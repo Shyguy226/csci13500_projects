@@ -102,33 +102,6 @@ int main(){
         
 	fin.close();
 	spaceCount = countSpaces(pro); //counts spaces in main pronunciation
-	ans += "\nReplace phoneme\t: ";
-	fin.open ("Pro_Dictionary");
-	while (getline(fin, insert3)){ //this section is parsing the phonemes
-	  splitOnSpace(insert3, a, b);
-	  r2 = pro;
-	  r4 = b;
-	  if (spaceCount == countSpaces(r4)){ //this compares length
-	  for (int i = 0; i <= spaceCount; i++){
-	    splitOnSpace(r2, r1, r2);
-	    splitOnSpace(r4, r3, r4);
-	    if (r1 != r3){ //counts how many phonemes are different
-	      counter++;
-	    }
-	    
-	  }
-	  for (int i = 0; i < cooc; i++){ //for each identical, take em out
-	    if (a == names[i])
-	      flag1=true;
-	  }
-	  if (counter < 2 && a != past && flag1==false){ //filters out 
-	    ans += a + " ";
-	  }
-	  counter = 0;
-	  flag1 = false;
-	  }
-	}
-	fin.close(); //must close document to reopen every time
 	counter = 0;
 	ans += "\nAdd phoneme\t: ";
 	fin.open("Pro_Dictionary");
@@ -154,7 +127,7 @@ int main(){
 	}
 	fin.close();
 	counter = 0;
-	      
+	      //fuck yes, I'm a legend and I'm awesome. No one is better than me
 	ans +="\nRemove phoneme\t: ";
 	fin.open("Pro_Dictionary");
 	while (getline(fin, insert3)){
@@ -177,7 +150,35 @@ int main(){
 	    counter = 0;
 	  }
 	}
-	  
+	fin.close();
+	ans += "\nReplace phoneme\t: ";
+	counter = 0;
+	fin.open ("Pro_Dictionary");
+	while (getline(fin, insert3)){ //this section is parsing the phonemes
+	  splitOnSpace(insert3, a, b);
+	  r2 = pro;
+	  r4 = b;
+	  if (spaceCount == countSpaces(r4)){ //this compares length
+	  for (int i = 0; i <= spaceCount; i++){
+	    splitOnSpace(r2, r1, r2);
+	    splitOnSpace(r4, r3, r4);
+	    if (r1 != r3){ //counts how many phonemes are different
+	      counter++;
+	    }
+	    
+	  }
+	  for (int i = 0; i < cooc; i++){ //for each identical, take em out
+	    if (a == names[i])
+	      flag1=true;
+	  }
+	  if (counter < 2 && a != past && flag1==false){ //filters out 
+	    ans += a + " ";
+	  }
+	  counter = 0;
+	  flag1 = false;
+	  }
+	}
+	fin.close();
 	if (!found){ //if the word does not exist in the dictionary
 	ans = "Not found";
 	}
