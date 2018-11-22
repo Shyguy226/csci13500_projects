@@ -49,13 +49,19 @@ Parameters:
     minutes: number of minutes (0-59)
     log:     a cout-like log  */
 
+bool isNextToATree(Dwarf & dwarf, int r, int c){
+  if(dwarf.look(r, c+1) == APPLE_TREE || dwarf.look(r, c+1) == PINE_TREE || dwarf.look(r, c-1) == APPLE_TREE || dwarf.look(r, c-1) == PINE_TREE || dwarf.look(r+1, c) == APPLE_TREE || dwarf.look(r+1, c) == PINE_TREE || dwarf.look(r-1, c) == APPLE_TREE || dwarf.look(r-1, c) == PINE_TREE)
+    return true;
+  return false;
+}
+
 void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
   // Get current position of the dwarf
   int r = dwarf.row();
   int c = dwarf.col();
 
   // Look if there is a tree on the right from the dwarf
-  if (dwarf.look(r, c+1) == PINE_TREE) {
+  if (isNextToATree(dwarf, r, c) {
     // If there is a pine tree, chop it
     log << "Found a tree -- chop" << endl;
     dwarf.start_chop(EAST);
