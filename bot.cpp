@@ -21,6 +21,7 @@ bool buildTime2 = false;
 bool flag = true;
 bool flag2=true;
 bool flag3 = true;
+bool test = false;
 
 int ROWS;  // global variables
 int COLS;
@@ -156,7 +157,7 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
   int c = dwarf.col();
   if(day>1)
     buildTime=false;
-  if(day == 1 && dwarf.name()==4 && hours == 10)
+  if(day == 1 && dwarf.name()==4 && hours == 7)
     dwarf.start_walk(5,10);
   if(day > 1){
     if(dwarf.name() == 1 && hours == 8)
@@ -176,10 +177,14 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
     dwarf.start_walk(3, 15);
   if(dwarf.name()==5 && hours == 6 && minutes > 15)
     dwarf.start_chop(EAST);
-  if(dwarf.name()==5 && hours == 6 && minutes > 30)
-    dwarf.start_walk(r, c+1);
-  if(dwarf.name()==5 && hours == 6 && minutes > 45)
+  if(dwarf.name()==5 && hours == 7 && minutes < 20)
+    dwarf.start_walk(3,16);
+  if(dwarf.name()==5 && hours == 7 && minutes < 40)
     dwarf.start_pick(EAST);
+  if(dwarf.name()==5 && hours == 7 && minutes < 59)
+    dwarf.start_walk(3,17);
+  if(dwarf.name()==5 && hours == 8 && minutes < 20)
+    dwarf.start_pick(NORTH);
   if(hours > 17 || hours < 5){
     if(dwarf.name()!=4 && hours == 20 && minutes == 15 && day == 1)
       dwarf.start_chop(NORTH);
