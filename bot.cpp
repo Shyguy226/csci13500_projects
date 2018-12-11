@@ -164,15 +164,15 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
     if(dwarf.name() == 2 && hours == 8)
       dwarf.start_walk(2, 20);
   }
-  if(dwarf.name()==3 && hours > 19 && hours < 22)
+  if(dwarf.name()==3 && hours > 19 && hours < 21)
     dwarf.start_walk(3, 15);
-  if(dwarf.name()==3 && (hours > 21 || hours < 2))
+  if(dwarf.name()==3 && (hours > 20 || hours < 2))
     dwarf.start_build(EAST);
   if(dwarf.name()==3 && hours > 1 && hours < 4)
     dwarf.start_walk(4, 9);
-  if(dwarf.name()==5 && hours > 3 && hours < 7)
+  if(dwarf.name()==5 && hours > 3 && hours < 6)
     dwarf.start_walk(3, 15);
-  if(dwarf.name()==5 && hours == 7)
+  if(dwarf.name()==5 && hours == 6 && minutes > 15)
     dwarf.start_chop(EAST);
   if(hours > 17 || hours < 3){
     if(dwarf.name()==0)
@@ -254,8 +254,17 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
       flag = false;
       buildTime = true;
     }
-    if(buildTime && hours < 10 && dwarf.name()==0 && day == 1){
-      dwarf.start_walk(4,7);
+    if(buildTime && hours < 12 && dwarf.name()==0 && day == 1){
+      if(dwarf.look(4,7)==EMPTY || dwarf.look(4,7)==DWARF)
+	dwarf.start_walk(4,7);
+      else if (dwarf.look(3,7)==EMPTY || dwarf.look(3,7)==DWARF)
+	dwarf.start_walk(3,7);
+      else if (dwarf.look(5,7)==EMPTY || dwarf.look(5,7)==DWARF)
+	dwarf.start_walk(5,7);
+      else if (dwarf.look(4,6)==EMPTY || dwarf.look(4,6)==DWARF)
+	dwarf.start_walk(4,6);
+      else if (dwarf.look(4,8)==EMPTY || dwarf.look(4,8)==DWARF)
+	dwarf.start_walk(4,8);
     }
     if(dwarf.look(dwarf.row()-1, dwarf.col())==FENCE && dwarf.row()<10 && dwarf.name()==0)
       dwarf.start_walk(dwarf.row()+1, dwarf.col());
@@ -266,8 +275,17 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
       dwarf.start_walk(1,7);
       flag2=false;
     }
-    if(buildTime && hours < 10 && dwarf.name()==1 && day == 1){
-      dwarf.start_walk(1,7);
+    if(buildTime && hours < 12 && dwarf.name()==1 && day == 1){
+      if(dwarf.look(1,7)==EMPTY || dwarf.look(1,7)==DWARF)
+	dwarf.start_walk(1,7);
+      else if(dwarf.look(0,7)==EMPTY || dwarf.look(0,7)==DWARF)
+	dwarf.start_walk(0,7);
+      else if(dwarf.look(2,7)==EMPTY || dwarf.look(2,7)==DWARF)
+	dwarf.start_walk(2,7);
+      else if(dwarf.look(1,6)==EMPTY || dwarf.look(1,6)==DWARF)
+	dwarf.start_walk(1,6);
+      else
+	dwarf.start_walk(1,8);
     }
     if(dwarf.look(dwarf.row()+1, dwarf.col())==FENCE && dwarf.col()<16 && dwarf.name()==1)
       dwarf.start_walk(dwarf.row(), dwarf.col()+1);
@@ -278,8 +296,17 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
       dwarf.start_walk(4,16);
       flag3 = false;
     }
-    if(buildTime && hours < 10 && dwarf.name()==2 && day == 1){
-      dwarf.start_walk(4,16);
+    if(buildTime && hours < 12 && dwarf.name()==2 && day == 1){
+      if(dwarf.look(4,16)==EMPTY || dwarf.look(4,16)==DWARF)
+	dwarf.start_walk(4,16);
+      else if(dwarf.look(3,16)==EMPTY || dwarf.look(3,16)==DWARF)
+	dwarf.start_walk(3,16);
+      else if(dwarf.look(5,16)==EMPTY || dwarf.look(5,16)==DWARF)
+	dwarf.start_walk(5,16);
+      else if(dwarf.look(4,15)==EMPTY || dwarf.look(4,15)==DWARF)
+	dwarf.start_walk(4,15);
+      else if(dwarf.look(4,17)==EMPTY || dwarf.look(4,17)==DWARF)
+	dwarf.start_walk(4,17);
     }
     if(dwarf.look(dwarf.row()-1, dwarf.col())==FENCE && dwarf.row()<10 && dwarf.name()==2)
       dwarf.start_walk(dwarf.row()+1, dwarf.col());
