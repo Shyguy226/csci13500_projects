@@ -156,6 +156,8 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
   int c = dwarf.col();
   if(day>1)
     buildTime=false;
+  if(day == 1 && dwarf.name()==4 && hours == 10)
+    dwarf.start_walk(5,10);
   if(day > 1){
     if(dwarf.name() == 1 && hours == 8)
       dwarf.start_walk(20, 20);
@@ -174,7 +176,19 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
     dwarf.start_walk(3, 15);
   if(dwarf.name()==5 && hours == 6 && minutes > 15)
     dwarf.start_chop(EAST);
-  if(hours > 17 || hours < 3){
+  if(dwarf.name()==5 && hours == 6 && minutes > 30)
+    dwarf.start_walk(r, c+1);
+  if(dwarf.name()==5 && hours == 6 && minutes > 45)
+    dwarf.start_pick(EAST);
+  if(hours > 17 || hours < 5){
+    if(dwarf.name()!=4 && hours == 20 && minutes == 15 && day == 1)
+      dwarf.start_chop(NORTH);
+    if(dwarf.name()!=4 && hours == 20 && minutes == 30 && day == 1)
+      dwarf.start_chop(SOUTH);
+    if(dwarf.name()!=4 && hours == 20 && minutes == 45 && day == 1)
+      dwarf.start_chop(EAST);
+    if(dwarf.name()!=4 && hours == 21 && day == 1)
+      dwarf.start_chop(WEST);
     if(dwarf.name()==0)
       dwarf.start_walk(4, 12);
     if(dwarf.name()==1)
