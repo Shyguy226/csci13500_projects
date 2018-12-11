@@ -3,7 +3,6 @@ Author: Andrew Giannico
 Course: CSCI-135
 Instructor: Genady Maryash
 Assignment: Project 3 Part C
-
 This program is now at a point where the dwarves will build fences that are connected for at least 30 spaces, as well as cutting down trees in any direction along the way.
 */
 #include <cstdlib>
@@ -175,20 +174,16 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) {
     dwarf.start_walk(4, 9);
   if(dwarf.name()==5 && hours > 3 && hours < 6)
     dwarf.start_walk(3, 15);
-  if(dwarf.name()==5 && hours == 6 && minutes > 20 && minutes < 40)
+  if(dwarf.name()==5 && hours == 6 && minutes > 15)
     dwarf.start_chop(EAST);
-  if(dwarf.name()==5 && hours == 6 && minutes < 59)
-    dwarf.start_walk(3,16);
-  if(dwarf.name()==5 && hours == 7 && minutes < 15)
-    dwarf.start_pick(EAST);
   if(dwarf.name()==5 && hours == 7 && minutes < 20)
-    dwarf.start_chop(EAST);
-  if(dwarf.name()==5 && hours == 7 && minutes < 30)
-    dwarf.start_walk(3,17);
-  if(dwarf.name()==5 && hours == 7 && minutes < 45)
-    dwarf.start_pick(NORTH);
+    dwarf.start_walk(3,16);
+  if(dwarf.name()==5 && hours == 7 && minutes < 40)
+    dwarf.start_pick(EAST);
   if(dwarf.name()==5 && hours == 7 && minutes < 59)
-    dwarf.start_chop(EAST);
+    dwarf.start_walk(3,17);
+  if(dwarf.name()==5 && hours == 8 && minutes < 20)
+    dwarf.start_pick(NORTH);
   if(hours > 17 || hours < 5){
     if(dwarf.name()!=4 && hours == 20 && minutes == 15 && day == 1)
       dwarf.start_chop(NORTH);
